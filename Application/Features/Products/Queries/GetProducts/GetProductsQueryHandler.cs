@@ -31,7 +31,7 @@ namespace EvosancomAPI.Application.Features.Products.Queries.GetProducts
 		{
 			_logger.LogInformation("Getting products. ");
 			// Pagination için INDEX hesaplama
-			throw new Exception("Bu bir deneme hatasıdır.");
+		//	throw new Exception("Bu bir deneme hatasıdır.");
 			var skip = (request.PageNumber - 1) * request.PageSize;
 
 			// Total count

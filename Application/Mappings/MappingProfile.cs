@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EvosancomAPI.Application.Features.Products.DTOs;
 using EvosancomAPI.Domain.Entities.Identity;
 using EvosancomAPI.Domain.Entities;
 using System;
@@ -8,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EvosancomAPI.Domain.Enums;
+using EvosancomAPI.Application.Features.Products.DTOs;
+using EvosancomAPI.Application.Features.ProductCategories.DTOs;
 
 namespace EvosancomAPI.Application.Mappings
 {
@@ -39,7 +40,8 @@ namespace EvosancomAPI.Application.Mappings
 				.ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.ProductCategory.Name));
 
 			CreateMap<ProductCategory, ProductCategoryDto>()
-				.ForMember(dest => dest.ProductCount, opt => opt.MapFrom(src => src.Products.Count(p => !p.IsDeleted)));
+				.ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+
 
 			// ============================================
 			// ORDER MAPPINGS
