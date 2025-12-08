@@ -11,6 +11,9 @@ using EvosancomAPI.Application.Abstractions.Services;
 using EvosancomAPI.Persistence.Services;
 using EvosancomAPI.Application.Abstractions.Services.Authentications;
 using Microsoft.AspNetCore.Identity;
+using EvosancomAPI.Application.Repositories.Dealer;
+using EvosancomAPI.Application;
+using EvosancomAPI.Persistence.Repositories.Dealer;
 
 
 
@@ -50,6 +53,9 @@ namespace EvosancomAPI.Persistence
 			services.AddScoped<IAuthService, AuthService>();
 			services.AddScoped<IInternalAuthentication, AuthService>();
 			services.AddScoped<IExternalAuthentication, AuthService>();
+
+			services.AddScoped<IDealerReadRepository, DealerReadRepository>();
+			services.AddScoped<IDealerWriteRepository, DealerWriteRepository>();
 
 			return services;
 		}
