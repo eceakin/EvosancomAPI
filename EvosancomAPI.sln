@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{24D154BD-56EF-4FD1-BD27-BAAE6024DACC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{BC9FB1D4-F2CA-4318-B8A3-D4818163E150}"
-	ProjectSection(SolutionItems) = preProject
-		Persistence\ServiceRegistration.cs = Persistence\ServiceRegistration.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F5908F33-9CCC-4318-8B03-0FB493067024}"
 EndProject
