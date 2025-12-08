@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.1.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
+    <PackageReference Include="MediatR" Version="13.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.32" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\EvosancomAPI.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstractions\Infrastructure\" />
+    <Folder Include="Features\Categories\" />
+    <Folder Include="Features\Dealers\" />
+    <Folder Include="Features\Orders\Commands\CreateOrder\" />
+    <Folder Include="Features\Orders\Commands\DeleteOrder\" />
+    <Folder Include="Features\Orders\Commands\UpdateOrder\" />
+    <Folder Include="Features\Orders\Queries\GetOrders\" />
+    <Folder Include="Features\Orders\Queries\GetOrdersById\" />
+    <Folder Include="Features\Reports\" />
+    <Folder Include="Features\Warehouse\" />
+    <Folder Include="Features\Production\" />
+    <Folder Include="Validators\Products\" />
+    <Folder Include="Repositories\ShipmentItem\" />
+    <Folder Include="Repositories\Shipment\" />
+    <Folder Include="Repositories\ServiceRequest\" />
+    <Folder Include="Repositories\ServiceLog\" />
+    <Folder Include="Repositories\ProductionLog\" />
+  </ItemGroup>
+
+</Project>
