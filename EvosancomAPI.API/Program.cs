@@ -12,6 +12,7 @@ using Serilog.Core;
 using Serilog.Sinks.PostgreSQL;
 using Serilog.Context;
 using EvosancomAPI.API.Configurations.ColumnWriters;
+using EvosancomAPI.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -97,7 +98,8 @@ builder.Services.AddAuthentication(options =>
 	};
 });
 var app = builder.Build();
-
+//
+//best practice : program cssade kalsın 
 
 
 // Configure the HTTP request pipeline.
@@ -106,6 +108,8 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+app.ConfigureExceptionHandler<Program>
+	(app.Services.GetRequiredService<ILogger<Program>>());
 
 
 app.UseDefaultFiles();
