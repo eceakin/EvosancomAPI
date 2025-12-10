@@ -53,6 +53,7 @@ namespace EvosancomAPI.Persistence
 			services.AddScoped<IAuthService, AuthService>();
 			services.AddScoped<IInternalAuthentication, AuthService>();
 			services.AddScoped<IExternalAuthentication, AuthService>();
+			services.AddScoped<IRoleService , RoleService>();
 
 			services.AddScoped<IDealerReadRepository, DealerReadRepository>();
 			services.AddScoped<IDealerWriteRepository, DealerWriteRepository>();

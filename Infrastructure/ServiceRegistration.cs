@@ -1,6 +1,8 @@
-﻿using EvosancomAPI.Application.Abstractions.Storage;
+﻿using EvosancomAPI.Application.Abstractions.Services.Configurations;
+using EvosancomAPI.Application.Abstractions.Storage;
 using EvosancomAPI.Application.Abstractions.Token;
 using EvosancomAPI.Infrastructure.enums;
+using EvosancomAPI.Infrastructure.Services.Configurations;
 using EvosancomAPI.Infrastructure.Services.Storage;
 using EvosancomAPI.Infrastructure.Services.Storage.Local;
 using EvosancomAPI.Infrastructure.Services.Token;
@@ -20,7 +22,7 @@ namespace EvosancomAPI.Infrastructure
 			services.AddScoped<IStorageService, StorageService>();
 			services.AddScoped<IStorage, LocalStorage>();
 			services.AddScoped<ITokenHandler, TokenHandler>();
-
+			services.AddScoped<IApplicationService , ApplicationService>();
 		}
 		public static void AddStorage<T>(this IServiceCollection services,StorageType storageType) where T : class, IStorage
 		{

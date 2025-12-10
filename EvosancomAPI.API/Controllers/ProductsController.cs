@@ -1,4 +1,7 @@
-﻿using EvosancomAPI.Application.Features.Products.Commands.CreateProduct;
+﻿using EvosancomAPI.Application.Consts;
+using EvosancomAPI.Application.CustomAttributes;
+using EvosancomAPI.Application.Enums;
+using EvosancomAPI.Application.Features.Products.Commands.CreateProduct;
 using EvosancomAPI.Application.Features.Products.Commands.DeleteProduct;
 using EvosancomAPI.Application.Features.Products.Commands.UpdateProduct;
 using EvosancomAPI.Application.Features.Products.Queries.GetProducts;
@@ -27,6 +30,8 @@ namespace EvosancomAPI.API.Controllers
 		}
 
 		[HttpGet]
+		[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Products,
+			ActionType = ActionType.Reading, Definition = "Get All Products")]
 		public async Task<IActionResult> GetAllProducts([FromQuery] GetProductsQueryRequest getProductsQueryRequest)
 		{
 			GetProductsQueryResponse response= await _mediator.Send(getProductsQueryRequest);
