@@ -65,6 +65,9 @@ namespace EvosancomAPI.Persistence.Services
 					.FirstOrDefault(m => m.Name == menu)?
 					.Actions.FirstOrDefault(a => a.Code == code)
 					;
+				if (action == null)
+					throw new InvalidOperationException($"No action found for menu '{menu}' and code '{code}'.");
+
 
 				endpoint = new()
 				{

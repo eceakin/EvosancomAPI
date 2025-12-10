@@ -17,6 +17,8 @@ namespace EvosancomAPI.Application.Abstractions.Services
 		Task<List<ListUserDto>> GetAllUsersAsync();
 		int TotalUsersCount { get; }
 		Task AssingRoleToUserAsync(string userId, string[] roles);
-		Task<string[]> GetRolesToUserAsync(string userId);
+		Task<string[]> GetRolesToUserAsync(string userIdOrName);
+
+		Task<bool> HasRolePermissionToEndpointAsync(string userName,string code);
 	}
 }

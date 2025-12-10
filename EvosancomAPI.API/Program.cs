@@ -13,10 +13,13 @@ using Serilog.Sinks.PostgreSQL;
 using Serilog.Context;
 using EvosancomAPI.API.Configurations.ColumnWriters;
 using EvosancomAPI.API.Extensions;
+using EvosancomAPI.API.Filters;
 
+// create builder ile yapılandırma dosyalarını , kestrrel gibi sunuucuları vs yükler
+// 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 Logger log = new LoggerConfiguration()
 	.WriteTo.Console()
@@ -52,7 +55,12 @@ builder.Services.AddHttpLogging(logging =>
 });
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(
+	options=> 
+	{
+		options.Filters.Add<RolePermissionFilter>();
+	}
+	);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -97,9 +105,13 @@ builder.Services.AddAuthentication(options =>
 		}
 	};
 });
+
+// build ile uygulamayı oluşturuyoruz
+// yukarıdaki tüm servisler kullanılarak web uygulaması oluşturulur
+// uygulama hazır ama isteklere nasıl yanıt vereceğini bilmiyor
 var app = builder.Build();
 //
-//best practice : program cssade kalsın 
+//best practice : program cs sade kalsın 
 
 
 // Configure the HTTP request pipeline.
@@ -113,11 +125,16 @@ app.ConfigureExceptionHandler<Program>
 
 
 app.UseDefaultFiles();
+
+// static dosyaları kullanmamızı sağlar
+//resimler, js,css dosyaları gibi
 app.UseStaticFiles();
 
 app.UseSerilogRequestLogging(); // her istekte loglama yapar
 								// loglanmasını istediğimiz şeylerin üstüne koyarız
 app.UseHttpLogging();
+
+// https yönlendirmesi yapar (http -> https)
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -144,4 +161,19 @@ app.Use(async (context, next) =>
 app.MapControllers();
 
 
+//kestreli başlatır
+//program uygulama durdurulana kadar bu satırda bekler
 app.Run();
+
+
+// middleware nedir ? 
+/* 
+ * Middleware, HTTP isteği (request) ve yanıtı (response) üzerinde işlem yapan,
+ * uygulama ile istemci arasındaki yazılım bileşenleridir. Her middleware, isteği işleyebilir,
+ * değiştirebilir, bir sonraki middleware’e iletebilir veya isteği sonlandırabilir.
+ * 
+ * Pipeline (boru hattı), uygulamanızda middleware’lerin sıralı olarak zincirlenmiş halidir. 
+ * Her HTTP isteği, pipeline’daki middleware’lerden sırayla geçer. 
+ * Her middleware, isteği işleyip bir sonrakine aktarır veya işlemi sonlandırabilir.
+ * 
+ */ 

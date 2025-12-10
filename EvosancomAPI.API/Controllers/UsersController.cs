@@ -15,6 +15,7 @@ namespace EvosancomAPI.API.Controllers
 {
     [Route("api/[controller]")]
 	[ApiController]
+
 	public class UsersController : ControllerBase
 	{
 		readonly IMediator _mediator;
@@ -37,7 +38,7 @@ namespace EvosancomAPI.API.Controllers
 
 		// tüm kullanıcıları bize geri döndürecek 
 		[HttpGet]
-		[Authorize]
+		//[Authorize]
 		[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Reading, Definition = "Get All Users")]
 		public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersQueryRequest request)
 		{
@@ -46,7 +47,7 @@ namespace EvosancomAPI.API.Controllers
 		}
 
 		[HttpPost("assign-role-to-user")]
-		[Authorize]
+		//[Authorize]
 		[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Writing, Definition = "Assign Role To User")]
 		public async Task<IActionResult> AssignRoleToUser(AssignRoleToUserCommandRequest request)
 		{
@@ -55,7 +56,7 @@ namespace EvosancomAPI.API.Controllers
 		}
 
 		[HttpGet("get-roles-to-user/{UserId}")]
-		[Authorize]
+		//[Authorize]
 		[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Reading, Definition = "Get roles to User")]
 		public async Task<IActionResult> GetRolesToUser([FromRoute] GetRolesToUserCommandRequest request)
 		{
@@ -63,6 +64,6 @@ namespace EvosancomAPI.API.Controllers
 			return Ok(getRolesToUserCommandResponse);
 		}
 
-		//3a58228c-9487-4bc3-b9d2-17e80133cb3a
+		
 	}
 }

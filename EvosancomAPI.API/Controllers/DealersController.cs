@@ -13,7 +13,7 @@ namespace EvosancomAPI.API.Controllers
 	[Route("api/[controller]")]
 	[ApiController]
 	public class DealersController : ControllerBase
-	{
+	{/*
 		readonly IMediator _mediator;
 
 		public DealersController(IMediator mediator)
@@ -60,6 +60,7 @@ namespace EvosancomAPI.API.Controllers
 				.Send(deleteProductCategoryCommandRequest);
 			return Ok(response);
 		}
-			}
+			}*/
+	}
 
 }

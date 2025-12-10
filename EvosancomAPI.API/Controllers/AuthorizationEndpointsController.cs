@@ -26,7 +26,7 @@ namespace EvosancomAPI.API.Controllers
 		}
 
 		[HttpPost("get-roles-to-endpoint")]
-		public async Task<IActionResult> GetRolesToEndpoint([FromQuery]
+		public async Task<IActionResult> GetRolesToEndpoint([FromBody]
 		GetRolesToEndpointQueryRequest request)
 		{
 			GetRolesToEndpointQueryResponse response = await _mediator.Send(request);
