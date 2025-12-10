@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Identity;
 using EvosancomAPI.Application.Repositories.Dealer;
 using EvosancomAPI.Application;
 using EvosancomAPI.Persistence.Repositories.Dealer;
+using EvosancomAPI.Persistence.Repositories.Endpoint;
+using EvosancomAPI.Application.Repositories.Endpoint;
+using EvosancomAPI.Persistence.Repositories.Menu;
 
 
 
@@ -49,14 +52,24 @@ namespace EvosancomAPI.Persistence
 			services.AddScoped<IProductCategoryWriteRepository, ProductCategoryWriteRepository>();
 			services.AddScoped<IOrderItemWriteRepository, OrderItemWriteRepository>();
 			services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+			services.AddScoped<IEndpointReadRepository, EndpointReadRepository>();
+			services.AddScoped<IEndpointWriteRepository, EndpointWriteRepository>();
+
+			services.AddScoped<IMenuReadRepository, MenuReadRepository>();
+			services.AddScoped<IMenuWriteRepository, MenuWriteRepository>();
+
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IAuthService, AuthService>();
 			services.AddScoped<IInternalAuthentication, AuthService>();
 			services.AddScoped<IExternalAuthentication, AuthService>();
 			services.AddScoped<IRoleService , RoleService>();
+			services.AddScoped<IAuthorizationEndpointService, AuthorizationEndpointService>();
 
 			services.AddScoped<IDealerReadRepository, DealerReadRepository>();
 			services.AddScoped<IDealerWriteRepository, DealerWriteRepository>();
+
+			
+			services.AddScoped<IAuthorizationEndpointService , AuthorizationEndpointService>();
 
 			return services;
 		}

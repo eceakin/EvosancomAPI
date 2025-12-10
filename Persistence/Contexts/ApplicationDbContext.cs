@@ -4,6 +4,7 @@ using EvosancomAPI.Domain.Entities;
 using EvosancomAPI.Domain.Entities.Common;
 using EvosancomAPI.Domain.Entities.Files;
 using EvosancomAPI.Domain.Entities.Identity;
+using EvosancomAPI.Domain.Entities.Role;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DomainFile = EvosancomAPI.Domain.Entities.Files.File;
@@ -40,10 +41,11 @@ namespace EvosancomAPI.Persistence.Contexts
 
 		public DbSet<Expense> Expenses { get; set; }
 		public DbSet<DomainFile> Files { get; set; }
-		
 
+        public DbSet<Menu> Menus { get; set; }
+		public DbSet<Endpoint> Endpoints { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
