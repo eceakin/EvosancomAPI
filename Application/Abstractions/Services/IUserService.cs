@@ -14,6 +14,9 @@ namespace EvosancomAPI.Application.Abstractions.Services
 		Task UpdateRefreshToken(string refreshToken,
 			ApplicationUser applicationUser,DateTime accessTokenDate,int addOnAccessTokenDate);
 
-	
+		Task<List<ListUserDto>> GetAllUsersAsync();
+		int TotalUsersCount { get; }
+		Task AssingRoleToUserAsync(string userId, string[] roles);
+		Task<string[]> GetRolesToUserAsync(string userId);
 	}
 }

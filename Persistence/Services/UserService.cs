@@ -5,6 +5,7 @@ using EvosancomAPI.Application.Features.AppUser.Commands.CreateUser;
 using EvosancomAPI.Domain.Entities.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,23 @@ namespace EvosancomAPI.Persistence.Services
 			_userManager = userManager;
 		}
 
+		public int TotalUsersCount => _userManager.Users.Count();
+
+		public async Task AssingRoleToUserAsync(string userId, string[] roles)
+		{
+		ApplicationUser applicationUser =await	_userManager.FindByIdAsync(userId);
+			if(applicationUser != null)
+			{
+				var userRoles = await _userManager.GetRolesAsync(applicationUser);
+				await _userManager.RemoveFromRolesAsync(applicationUser, userRoles);
+				await _userManager.AddToRolesAsync(applicationUser, roles);
+			}
+			
+		}
+
 		public async Task<CreateUserResponseDto> CreateAsync(CreateUserDto model)
 		{
-			
+
 
 			IdentityResult result = await _userManager.CreateAsync(new ApplicationUser
 			{
@@ -50,20 +65,47 @@ namespace EvosancomAPI.Persistence.Services
 			return response;
 		}
 
-		public async Task UpdateRefreshToken(string refreshToken,ApplicationUser user,
-			DateTime accessTokenDate,int addOnAccessTokenDate)
+		public async Task<List<ListUserDto>> GetAllUsersAsync()
 		{
-            if (user != null)
-            {
-                user.RefreshToken = refreshToken;
+			var users = await _userManager.Users.ToListAsync();
+			return users.Select(user => new ListUserDto
+			{
+				Id = user.Id,
+				Email = user.Email,
+				FirstName = user.FirstName,
+				LastName = user.LastName,
+				TwoFactorEnabled = user.TwoFactorEnabled,
+				UserName = user.UserName
+
+			}).ToList();
+		}
+
+		public async Task<string[]> GetRolesToUserAsync(string userId)
+		{
+			ApplicationUser applicationUser = await _userManager.FindByIdAsync(userId);
+			if (applicationUser!=null)
+			{
+				var userRoles = await _userManager.GetRolesAsync(applicationUser);
+				return userRoles.ToArray();
+
+			}
+			throw new Exception("bu role ait kullanıcı bulunamadı");
+		}
+
+		public async Task UpdateRefreshToken(string refreshToken, ApplicationUser user,
+			DateTime accessTokenDate, int addOnAccessTokenDate)
+		{
+			if (user != null)
+			{
+				user.RefreshToken = refreshToken;
 				user.RefreshTokenEndTime = accessTokenDate.AddSeconds(addOnAccessTokenDate);
 				await _userManager.UpdateAsync(user);
-            }
+			}
 			else
 			{
 				throw new NotFoundUserException();
 			}
-			
-        }
+
+		}
 	}
 }
