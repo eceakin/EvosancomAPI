@@ -8,5 +8,4 @@
 		public decimal AdditionalCost { get; set; }
 		public string? Notes { get; set; }
 	}
-
 }
