@@ -44,6 +44,8 @@ namespace EvosancomAPI.Persistence.Contexts
 
         public DbSet<Menu> Menus { get; set; }
 		public DbSet<Endpoint> Endpoints { get; set; }
+        public DbSet<DealerNotification> DealerNotifications { get; set; }
+        public DbSet<PriceCalculationHistory>	 PriceCalculationHistories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

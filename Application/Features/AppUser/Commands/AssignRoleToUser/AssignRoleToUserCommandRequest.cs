@@ -13,5 +13,3 @@ namespace EvosancomAPI.Application.Features.AppUser.Commands.AssignRoleToUser
         public string[] Roles { get; set; }
     }
 }
-
-7d5f6f47 - b7f9 - 48f2 - a620 - 5da4eae348d1

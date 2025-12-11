@@ -17,6 +17,10 @@ using EvosancomAPI.Persistence.Repositories.Dealer;
 using EvosancomAPI.Persistence.Repositories.Endpoint;
 using EvosancomAPI.Application.Repositories.Endpoint;
 using EvosancomAPI.Persistence.Repositories.Menu;
+using EvosancomAPI.Persistence.Repositories.DealerNotification;
+using EvosancomAPI.Application.Repositories.DealerNotification;
+using EvosancomAPI.Application.Repositories.PriceCalculation;
+using EvosancomAPI.Persistence.Repositories.PricaCalculation;
 
 
 
@@ -68,7 +72,12 @@ namespace EvosancomAPI.Persistence
 			services.AddScoped<IDealerReadRepository, DealerReadRepository>();
 			services.AddScoped<IDealerWriteRepository, DealerWriteRepository>();
 
-			
+			services.AddScoped<IDealerNotificationReadRepository, DealerNotificationReadRepository>();
+			services.AddScoped<IDealerNotificationWriteRepository, DealerNotificationWriteRepository>();
+
+			services.AddScoped<IPriceCalculationHistoryReadRepository, PriceCalculationHistoryReadRepository>();
+			services.AddScoped<IPriceCalculationHistoryWriteRepository, PriceCalculationHistoryWriteRepository>();
+
 			services.AddScoped<IAuthorizationEndpointService , AuthorizationEndpointService>();
 
 			return services;
