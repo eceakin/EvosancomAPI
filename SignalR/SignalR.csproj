@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\EvosancomAPI.Application.csproj" />
+    <ProjectReference Include="..\Application\EvosancomAPI.Application.csproj" />
   </ItemGroup>
 
 </Project>

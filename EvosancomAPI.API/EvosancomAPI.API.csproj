@@ -26,6 +26,7 @@
     <ProjectReference Include="..\Application\EvosancomAPI.Application.csproj" />
     <ProjectReference Include="..\Infrastructure\EvosancomAPI.Infrastructure.csproj" />
     <ProjectReference Include="..\Persistence\EvosancomAPI.Persistence.csproj" />
+    <ProjectReference Include="..\SignalR\SignalR.csproj" />
   </ItemGroup>
 
   <ItemGroup>

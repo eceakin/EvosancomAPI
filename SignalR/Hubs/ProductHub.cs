@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvosancomAPI.SignalR.Hubs
+namespace SignalR.Hubs
 {
-	public class ProductHub : Hub
+	public class ProductHub :Hub
 	{
-
 	}
 }

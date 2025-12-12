@@ -14,13 +14,15 @@ using Serilog.Context;
 using EvosancomAPI.API.Configurations.ColumnWriters;
 using EvosancomAPI.API.Extensions;
 
+using SignalR;
 using EvosancomAPI.API.Filters;
-using EvosancomAPI.SignalR;
+
 
 // create builder ile yapılandırma dosyalarını , kestrrel gibi sunuucuları vs yükler
 // 
 var builder = WebApplication.CreateBuilder(args);
 
+// 1. CORS Servisini Ekle (SignalR ve Credentials için özel ayar)
 
 
 Logger log = new LoggerConfiguration()
@@ -71,6 +73,18 @@ builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddSignalRServices();
 //builder.Services.AddStorage<LocalStorage>();
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowAll",
+		builder =>
+		{
+			builder
+			.AllowAnyMethod()
+			.AllowAnyHeader()
+			.SetIsOriginAllowed(origin => true) // Bu ayar localhost ve 'null' origin'e izin verir
+			.AllowCredentials(); // SignalR için bu ZORUNLUDUR!
+		});
+});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -136,6 +150,7 @@ app.UseStaticFiles();
 app.UseSerilogRequestLogging(); // her istekte loglama yapar
 								// loglanmasını istediğimiz şeylerin üstüne koyarız
 app.UseHttpLogging();
+app.UseCors("AllowAll");
 
 // https yönlendirmesi yapar (http -> https)
 app.UseHttpsRedirection();
@@ -163,7 +178,7 @@ app.Use(async (context, next) =>
 
 app.MapControllers();
 
-
+app.MapHubs();
 //kestreli başlatır
 //program uygulama durdurulana kadar bu satırda bekler
 app.Run();
