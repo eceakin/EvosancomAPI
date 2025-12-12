@@ -15,7 +15,7 @@ namespace EvosancomAPI.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	//[Authorize]
 	public class ProductCategoriesController : ControllerBase
 	{
 		readonly IMediator _mediator;
@@ -25,8 +25,8 @@ namespace EvosancomAPI.API.Controllers
 		}
 
 		[HttpGet]
-		[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ProductCategories,
-			ActionType =ActionType.Reading , Definition ="Get All Product Categories")]
+	//	[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ProductCategories,
+		//	ActionType =ActionType.Reading , Definition ="Get All Product Categories")]
 		public async Task<IActionResult> GetAllProductCategories([FromQuery] GetAllProductCategoriesQueryRequest getProductCategoriesQueryRequest)
 		{
 			GetAllProductCategoriesQueryResponse response = await _mediator.Send(getProductCategoriesQueryRequest);
@@ -42,8 +42,8 @@ namespace EvosancomAPI.API.Controllers
 
 		[HttpPost]
 		
-		[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ProductCategories,
-			ActionType = ActionType.Writing, Definition =" Create Product Categories")]
+	//	[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ProductCategories,
+		//	ActionType = ActionType.Writing, Definition =" Create Product Categories")]
 		public async Task<IActionResult> CreateProductCategory([FromBody] CreateProductCategoryCommandRequest createProductCategoryCommandRequest)
 		{
 			CreateProductCategoryCommandResponse response = await _mediator.Send(createProductCategoryCommandRequest);
@@ -51,8 +51,8 @@ namespace EvosancomAPI.API.Controllers
 		}
 		[HttpPut]
 		
-		[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ProductCategories,
-			ActionType = ActionType.Updating, Definition = "update Product Categories")]
+	//	[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ProductCategories,
+		//	ActionType = ActionType.Updating, Definition = "update Product Categories")]
 		public async Task<IActionResult> UpdateProductCategory([FromBody] UpdateProductCategoryCommandRequest updateProductCategoryCommandRequest)
 		{
 			UpdateProductCategoryCommandResponse response = await _mediator.Send(updateProductCategoryCommandRequest);
@@ -60,8 +60,8 @@ namespace EvosancomAPI.API.Controllers
 		}
 
 		[HttpDelete]
-		[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ProductCategories,
-			ActionType = ActionType.Deleting, Definition = " delete Product Categories")]
+		//[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.ProductCategories,
+		//	ActionType = ActionType.Deleting, Definition = " delete Product Categories")]
 		public async Task<IActionResult> DeleteProductCategory([FromQuery] DeleteProductCategoryCommandRequest deleteProductCategoryCommandRequest)
 		{
 			DeleteProductCategoryCommandResponse response = await _mediator.Send(deleteProductCategoryCommandRequest);

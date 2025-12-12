@@ -18,7 +18,7 @@ namespace EvosancomAPI.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	[Authorize]
+	//[Authorize]
 	public class ProductsController : ControllerBase
 	{
 
@@ -30,8 +30,8 @@ namespace EvosancomAPI.API.Controllers
 		}
 
 		[HttpGet]
-		[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Products,
-			ActionType = ActionType.Reading, Definition = "Get All Products")]
+		//[AuthorizeDefinition(Menu = AuthorizeDefinitionConstants.Products,
+			//ActionType = ActionType.Reading, Definition = "Get All Products")]
 		public async Task<IActionResult> GetAllProducts([FromQuery] GetProductsQueryRequest getProductsQueryRequest)
 		{
 			GetProductsQueryResponse response= await _mediator.Send(getProductsQueryRequest);

@@ -24,21 +24,39 @@ namespace EvosancomAPI.API.Filters
 			if (!string.IsNullOrEmpty(name) && name != "deneme")
 			{
 				var descriptor = context.ActionDescriptor as ControllerActionDescriptor;
-				var attribute = descriptor.MethodInfo.GetCustomAttribute(typeof(AuthorizeDefinitionAttribute)) as AuthorizeDefinitionAttribute;
+				if (descriptor == null)
+				{
+					await next();
+					return;
+				}
 
+				var attribute = descriptor.MethodInfo.GetCustomAttribute(typeof(AuthorizeDefinitionAttribute)) as AuthorizeDefinitionAttribute;
 				var httpAttribute = descriptor.MethodInfo.GetCustomAttribute(typeof(HttpMethodAttribute)) as HttpMethodAttribute;
 
-				var code = $"{(httpAttribute != null ? httpAttribute.HttpMethods.First() : HttpMethods.Get)}.{attribute.ActionType}.{attribute.Definition.Replace(" ", "")}";
+				string code = null;
+				if (attribute != null)
+				{
+					code = $"{(httpAttribute != null ? httpAttribute.HttpMethods.First() : HttpMethods.Get)}.{attribute.ActionType}.{attribute.Definition.Replace(" ", "")}";
+				}
 
-				var hasRole = await _userService.HasRolePermissionToEndpointAsync(name, code);
+				// If code is null, skip permission check or handle as needed
+				if (code != null)
+				{
+					var hasRole = await _userService.HasRolePermissionToEndpointAsync(name, code);
 
-				if (!hasRole)
-					context.Result = new UnauthorizedResult();
+					if (!hasRole)
+						context.Result = new UnauthorizedResult();
+					else
+						await next();
+				}
 				else
+				{
 					await next();
+				}
 			}
 			else
 				await next();
 		}
+
 	}
 }

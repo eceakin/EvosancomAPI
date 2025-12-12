@@ -23,11 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Abstractions\Infrastructure\" />
-    <Folder Include="Features\Orders\Commands\CreateOrder\" />
-    <Folder Include="Features\Orders\Commands\DeleteOrder\" />
-    <Folder Include="Features\Orders\Commands\UpdateOrder\" />
-    <Folder Include="Features\Orders\Queries\GetOrders\" />
-    <Folder Include="Features\Orders\Queries\GetOrdersById\" />
     <Folder Include="Features\Reports\" />
     <Folder Include="Features\Warehouse\" />
     <Folder Include="Features\Production\" />

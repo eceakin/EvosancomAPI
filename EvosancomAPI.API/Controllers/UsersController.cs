@@ -39,7 +39,7 @@ namespace EvosancomAPI.API.Controllers
 		// tüm kullanıcıları bize geri döndürecek 
 		[HttpGet]
 		//[Authorize]
-		[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Reading, Definition = "Get All Users")]
+		//[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Reading, Definition = "Get All Users")]
 		public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersQueryRequest request)
 		{
 			GetAllUsersQueryResponse getAllUsersQueryResponse = await _mediator.Send(request);
@@ -48,7 +48,7 @@ namespace EvosancomAPI.API.Controllers
 
 		[HttpPost("assign-role-to-user")]
 		//[Authorize]
-		[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Writing, Definition = "Assign Role To User")]
+		//[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Writing, Definition = "Assign Role To User")]
 		public async Task<IActionResult> AssignRoleToUser(AssignRoleToUserCommandRequest request)
 		{
 			AssignRoleToUserCommandResponse assignRoleToUserCommandResponse = await _mediator.Send(request);
@@ -57,7 +57,7 @@ namespace EvosancomAPI.API.Controllers
 
 		[HttpGet("get-roles-to-user/{UserId}")]
 		//[Authorize]
-		[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Reading, Definition = "Get roles to User")]
+		//[AuthorizeDefinition(Menu = "Users", ActionType = Application.Enums.ActionType.Reading, Definition = "Get roles to User")]
 		public async Task<IActionResult> GetRolesToUser([FromRoute] GetRolesToUserCommandRequest request)
 		{
 			GetRolesToUserCommandResponse getRolesToUserCommandResponse = await _mediator.Send(request);
