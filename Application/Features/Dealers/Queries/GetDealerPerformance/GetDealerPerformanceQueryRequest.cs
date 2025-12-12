@@ -9,6 +9,9 @@ namespace EvosancomAPI.Application.Features.Dealers.Queries.GetDealerPerformance
 {
 	public class GetDealerPerformanceQueryRequest:IRequest<GetDealerPerformanceQueryResponse>
 	{
+		public
+			string UserId { get; set; }
+
 	}
 
 }

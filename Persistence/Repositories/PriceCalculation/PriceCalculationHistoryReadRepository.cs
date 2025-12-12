@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvosancomAPI.Persistence.Repositories.PricaCalculation
+namespace EvosancomAPI.Persistence.Repositories.PriceCalculation
 {
 	public class PriceCalculationHistoryReadRepository :ReadRepository<PriceCalculationHistory> , IPriceCalculationHistoryReadRepository
 	{

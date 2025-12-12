@@ -9,5 +9,7 @@ namespace EvosancomAPI.Application.Features.DealerOrders.Queries.TrackDealerOrde
 {
 	public class TrackDealerOrderQueryRequest: IRequest<TrackDealerOrderQueryResponse>
 	{
+		public Guid OrderId { get; set; }
+		public string UserId { get; set; }
 	}
 }

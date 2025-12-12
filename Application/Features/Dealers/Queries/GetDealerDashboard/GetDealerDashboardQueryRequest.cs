@@ -9,5 +9,6 @@ namespace EvosancomAPI.Application.Features.Dealers.Queries.GetDealerDashboard
 {
 	public class GetDealerDashboardQueryRequest: IRequest<GetDealerDashboardQueryResponse>
 	{
+		public string UserId { get; set; }
 	}
 }

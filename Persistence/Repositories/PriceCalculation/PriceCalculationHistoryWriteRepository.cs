@@ -2,7 +2,7 @@
 using EvosancomAPI.Domain.Entities;
 using EvosancomAPI.Persistence.Contexts;
 
-namespace EvosancomAPI.Persistence.Repositories.PricaCalculation
+namespace EvosancomAPI.Persistence.Repositories.PriceCalculation
 {
 	public class PriceCalculationHistoryWriteRepository : WriteRepository<PriceCalculationHistory> , IPriceCalculationHistoryWriteRepository
 	{

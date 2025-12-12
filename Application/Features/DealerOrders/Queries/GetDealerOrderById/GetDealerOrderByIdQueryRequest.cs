@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace EvosancomAPI.Application.Features.DealerOrders.Queries.GetDealerOrderById
 {
-	public class GetDealerOrderByIdQueryRequest:IRequest<GetDealerOrderByIdQueryResponse>
+	public class GetDealerOrderByIdQueryRequest : IRequest<GetDealerOrderByIdQueryResponse>
 	{
+		public Guid OrderId { get; set; }
+		public string UserId { get; set; }
 	}
 }

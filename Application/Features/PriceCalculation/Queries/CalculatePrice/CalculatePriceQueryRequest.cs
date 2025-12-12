@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EvosancomAPI.Application.Features.Orders.DTOs;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,10 @@ namespace EvosancomAPI.Application.Features.PriceCalculation.Queries.CalculatePr
 {
 	public class CalculatePriceQueryRequest:IRequest<CalculatePriceQueryResponse>
 	{
+		public Guid ProductId { get; set; }
+		public string UserId { get; set; }  // Dealer UserId
+
+		// Özel ölçüler: genişlik, yükseklik vb.
+		public CustomDimensionDto? CustomDimension { get; set; }
 	}
 }

@@ -44,8 +44,7 @@ namespace EvosancomAPI.Application.Mappings
 				.ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
 			CreateMap<Dealer, DealerDto>()
-				.ForMember(dest => dest.UserFullName,
-					opt => opt.MapFrom(src => $"{src.User.FirstName} {src.User.LastName}"))
+		
 				.ForMember(dest => dest.Email,
 					opt => opt.MapFrom(src => src.User.Email));
 

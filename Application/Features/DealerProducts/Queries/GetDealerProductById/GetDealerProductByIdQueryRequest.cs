@@ -9,5 +9,7 @@ namespace EvosancomAPI.Application.Features.DealerProducts.Queries.GetDealerProd
 {
 	public class GetDealerProductByIdQueryRequest:IRequest<GetDealerProductByIdQueryResponse>
 	{
+		public Guid ProductId { get; set; }
+		public string UserId { get; set; } // Dealer UserId
 	}
 }

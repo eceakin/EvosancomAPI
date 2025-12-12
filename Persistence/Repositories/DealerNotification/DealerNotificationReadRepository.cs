@@ -12,6 +12,6 @@ namespace EvosancomAPI.Persistence.Repositories.DealerNotification
 		public DealerNotificationReadRepository(Contexts.ApplicationDbContext context) : base(context)
 		{
 		}
-	{
+	
 	}
 }

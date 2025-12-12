@@ -47,7 +47,8 @@ namespace EvosancomAPI.Application.Features.Dealers.Queries.GetDealerById
 				{
 					Id = dealer.Id,
 					UserId = dealer.UserId,
-					UserFullName = $"{dealer.User.FirstName} {dealer.User.LastName}",
+					FirstName = dealer.User.FirstName,
+					LastName = dealer.User.LastName,
 					Email = dealer.User.Email,
 					CompanyName = dealer.CompanyName,
 					Address = dealer.Address,
