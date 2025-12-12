@@ -1,50 +1,32 @@
-﻿using EvosancomAPI.Application.Repositories.Dealer;
+﻿using EvosancomAPI.Application.Abstractions.Services;
+using EvosancomAPI.Application.DTOs.Dealer;
+using EvosancomAPI.Application.Features.Dealers.Commands.CreateDealer;
+using EvosancomAPI.Application.Repositories.Dealer;
 using MediatR;
 
 namespace EvosancomAPI.Application.Features.Dealers.Commands.UpdateDealer
 {
 	public class UpdateDealerCommandHandler : IRequestHandler<UpdateDealerCommandRequest, UpdateDealerCommandResponse>
 	{
-		private readonly IDealerWriteRepository _dealerWriteRepository;
-		private readonly IDealerReadRepository _dealerReadRepository;
+		readonly IDealerService _dealerService;
 
-		public UpdateDealerCommandHandler(IDealerReadRepository dealerReadRepository, IDealerWriteRepository dealerWriteRepository)
+		public UpdateDealerCommandHandler(IDealerService dealerService)
 		{
-			_dealerReadRepository = dealerReadRepository;
-			_dealerWriteRepository = dealerWriteRepository;
+			_dealerService = dealerService;
 		}
 
 		public async Task<UpdateDealerCommandResponse> Handle(UpdateDealerCommandRequest request, CancellationToken cancellationToken)
 		{
-			var dealer = await _dealerReadRepository.GetByIdAsync(request.Id.ToString());
-			if (dealer == null)
+			await _dealerService.UpdateDealerAsync(new UpdateDealerDto
 			{
-				return new UpdateDealerCommandResponse
-				{
-					Success = false,
-					Message = "Dealer not found."
-				};
-			}
-			dealer.CompanyName = request.CompanyName;
-			dealer.Phone = request.Phone;
-			dealer.Address = request.Address;
-			dealer.City = request.City;
-			dealer.District = request.District;
-			dealer.DiscountRate = request.DiscountRate;
-			dealer.MonthlySalesQuota = request.MonthlySalesQuota;
-			dealer.IsActive = request.IsActive;
-			dealer.ContractEndDate = request.ContractEndDate?.ToUniversalTime();
-			dealer.UpdatedDate = DateTime.UtcNow;
+				Id = request.Id,
+				CompanyName = request.CompanyName,
+				DiscountRate = request.DiscountRate,
+				SalesQuota = request.SalesQuota
+			});
 
-			 _dealerWriteRepository.UpdateAsync(dealer);
-			await _dealerWriteRepository.SaveAsync();
-			return new UpdateDealerCommandResponse
-			{
-				Success = true,
-				Message = "Dealer updated successfully."
-			};
-
-
+			return new UpdateDealerCommandResponse { Succeeded = true, Message = "Bayi başarıyla güncellendi." };
 		}
+	
 	}
 }

@@ -34,6 +34,7 @@ namespace EvosancomAPI.Application.Features.Products.Commands.UpdateProduct
 			product.Description = request.Description;
 			product.BasePrice = request.BasePrice;
 			product.IsCustomizable = request.IsCustomizable;
+			product.StockQuantity = request.StockQuantity;
 			product.ImageUrl = request.ImageUrl;
 			product.IsActive = request.IsActive;
 			product.UpdatedDate = DateTime.UtcNow;

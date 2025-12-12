@@ -55,13 +55,16 @@ namespace EvosancomAPI.Persistence.Contexts
 			modelBuilder.Entity<OrderItem>().Property(oi => oi.UnitPrice).HasPrecision(18, 2);
 			modelBuilder.Entity<Order>().Property(o => o.TotalAmount).HasPrecision(18, 2);
 			modelBuilder.Entity<Expense>().Property(e => e.Amount).HasPrecision(18, 2);
-
+			modelBuilder.Entity<Dealer>()
+				.HasOne(d => d.User)
+				.WithOne() // ApplicationUser tarafında navigation property yok
+				.HasForeignKey<Dealer>(d => d.UserId)
+				;
 
 		
 			// Diğer ilişkiler EF Core'un "Convention" (Standart İsimlendirme) özelliği
 			// sayesinde otomatik algılanır (CategoryId -> Category vb.) o yüzden hepsini yazmaya gerek yok.
 
-			base.OnModelCreating(modelBuilder);
 			// İlişkiler, kısıtlamalar ve diğer yapılandırmalar burada yapılabilir
 		}
 		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

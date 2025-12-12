@@ -15,6 +15,7 @@ using EvosancomAPI.API.Configurations.ColumnWriters;
 using EvosancomAPI.API.Extensions;
 
 using EvosancomAPI.API.Filters;
+using EvosancomAPI.SignalR;
 
 // create builder ile yapılandırma dosyalarını , kestrrel gibi sunuucuları vs yükler
 // 
@@ -68,6 +69,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
+builder.Services.AddSignalRServices();
 //builder.Services.AddStorage<LocalStorage>();
 
 builder.Services.AddAuthentication(options =>

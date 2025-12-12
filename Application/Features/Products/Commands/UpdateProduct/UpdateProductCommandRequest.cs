@@ -18,7 +18,8 @@ namespace EvosancomAPI.Application.Features.Products.Commands.UpdateProduct
 		public string? Barcode { get; set; }
 		public Guid ProductCategoryId { get; set; }
 		public string? Description { get; set; }
-		public decimal BasePrice { get; set; }
+        public int StockQuantity { get; set; }
+        public decimal BasePrice { get; set; }
 		public bool IsCustomizable { get; set; }
 		public string? ImageUrl { get; set; }
 		public bool IsActive { get; set; }

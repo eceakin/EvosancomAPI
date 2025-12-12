@@ -13,6 +13,7 @@ namespace EvosancomAPI.Domain.Entities
 		public string Code { get; set; } // Ürün kodu
 		public string Barcode { get; set; } // QR/Barkod için
 		public Guid ProductCategoryId { get; set; }
+		public int StockQuantity { get; set; }
 		public string Description { get; set; }
 		public decimal BasePrice { get; set; } // Temel fiyat
 		public bool IsCustomizable { get; set; } // Özel ölçü yapılabilir mi?

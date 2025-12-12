@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using EvosancomAPI.Domain.Enums;
 using EvosancomAPI.Application.Features.Products.DTOs;
 using EvosancomAPI.Application.Features.ProductCategories.DTOs;
-using EvosancomAPI.Application.Features.Dealers.DTOs;
 
 namespace EvosancomAPI.Application.Mappings
 {
@@ -42,13 +41,6 @@ namespace EvosancomAPI.Application.Mappings
 
 			CreateMap<ProductCategory, ProductCategoryDto>()
 				.ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
-
-			CreateMap<Dealer, DealerDto>()
-		
-				.ForMember(dest => dest.Email,
-					opt => opt.MapFrom(src => src.User.Email));
-
-			CreateMap<Dealer, DealerListDto>();
 
 			// ============================================
 			// ORDER MAPPINGS

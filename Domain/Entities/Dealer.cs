@@ -5,22 +5,16 @@ namespace EvosancomAPI.Domain.Entities
 {
 	public class Dealer : BaseEntity
 	{
-		public string UserId { get; set; } // Identity User Id (Bayi hesabı)
-		public string CompanyName { get; set; }
-		public string TaxNumber { get; set; }
-		public string TaxOffice { get; set; }
-		public string Phone { get; set; }
-		public string Address { get; set; }
-		public string City { get; set; }
-		public string District { get; set; }
-		public decimal DiscountRate { get; set; } // Bayi iskonto oranı
-		public decimal MonthlySalesQuota { get; set; } // Aylık satış kotası
-		public bool IsActive { get; set; }
-		public DateTime ContractStartDate { get; set; }
-		public DateTime? ContractEndDate { get; set; }
-
-		// Navigation Properties
+		public string UserId { get; set; }
 		public ApplicationUser User { get; set; }
-		public ICollection<DealerSalesReport> SalesReports { get; set; }
+		public string CompanyName { get; set; }
+
+		// Bayi Özellikleri
+		public decimal DiscountRate { get; set; } // Örn: 0.10 (%10)
+		public decimal SalesQuota { get; set; } // Aylık/Yıllık Kota
+		public decimal CurrentPeriodSales { get; set; } // Şu anki satış toplamı
+
+		// Bayi Sözleşme Tarihi
+		public DateTime ContractDate { get; set; }
 	}
 }

@@ -28,6 +28,7 @@ namespace EvosancomAPI.Application.Features.Products.Commands.CreateProduct
 				Barcode = request.Barcode,
 				ProductCategoryId = request.ProductCategoryId,
 				Description = request.Description,
+				StockQuantity  = request.StockQuantity,
 				BasePrice = request.BasePrice,
 				IsCustomizable = request.IsCustomizable,
 				ImageUrl = request.ImageUrl

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EvosancomAPI.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251211181739_mig-6")]
-    partial class mig6
+    [Migration("20251212115845_mig9")]
+    partial class mig9
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,54 +84,27 @@ namespace EvosancomAPI.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("ContractEndDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("ContractStartDate")
+                    b.Property<DateTime>("ContractDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<decimal>("DiscountRate")
+                    b.Property<decimal>("CurrentPeriodSales")
                         .HasColumnType("numeric");
 
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
+                    b.Property<decimal>("DiscountRate")
+                        .HasColumnType("numeric");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<decimal>("MonthlySalesQuota")
+                    b.Property<decimal>("SalesQuota")
                         .HasColumnType("numeric");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TaxNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TaxOffice")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -142,7 +115,8 @@ namespace EvosancomAPI.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Dealers");
                 });
@@ -377,7 +351,7 @@ namespace EvosancomAPI.Persistence.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
@@ -1461,8 +1435,8 @@ namespace EvosancomAPI.Persistence.Migrations
             modelBuilder.Entity("EvosancomAPI.Domain.Entities.Dealer", b =>
                 {
                     b.HasOne("EvosancomAPI.Domain.Entities.Identity.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne()
+                        .HasForeignKey("EvosancomAPI.Domain.Entities.Dealer", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1483,7 +1457,7 @@ namespace EvosancomAPI.Persistence.Migrations
             modelBuilder.Entity("EvosancomAPI.Domain.Entities.DealerSalesReport", b =>
                 {
                     b.HasOne("EvosancomAPI.Domain.Entities.Dealer", "Dealer")
-                        .WithMany("SalesReports")
+                        .WithMany()
                         .HasForeignKey("DealerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1838,11 +1812,6 @@ namespace EvosancomAPI.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EvosancomAPI.Domain.Entities.Dealer", b =>
-                {
-                    b.Navigation("SalesReports");
                 });
 
             modelBuilder.Entity("EvosancomAPI.Domain.Entities.Order", b =>

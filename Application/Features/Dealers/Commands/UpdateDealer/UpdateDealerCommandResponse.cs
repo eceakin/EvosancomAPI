@@ -2,7 +2,7 @@
 {
 	public class UpdateDealerCommandResponse
 	{
-		public bool Success { get; set; }
+		public bool Succeeded { get; set; }
 		public string Message { get; set; }
 	}
 

@@ -23,9 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Abstractions\Infrastructure\" />
-    <Folder Include="Features\Reports\" />
-    <Folder Include="Features\Warehouse\" />
-    <Folder Include="Features\Production\" />
     <Folder Include="Validators\Products\" />
     <Folder Include="Repositories\ShipmentItem\" />
     <Folder Include="Repositories\Shipment\" />

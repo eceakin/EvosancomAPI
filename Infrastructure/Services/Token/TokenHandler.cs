@@ -30,6 +30,11 @@ namespace EvosancomAPI.Infrastructure.Services.Token
 			SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
 			token.Expiration = DateTime.UtcNow.AddSeconds(second);
+			var claims = new List<Claim>
+			{
+				new Claim(ClaimTypes.Name, user.UserName),
+				new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()) // BU SATIRI EKLE
+            };
 			JwtSecurityToken jwtSecurityToken = new(
 				issuer: _configuration["Token:Issuer"],
 				audience: _configuration["Token:Audience"],
@@ -37,9 +42,8 @@ namespace EvosancomAPI.Infrastructure.Services.Token
 				expires: token.Expiration,
 				signingCredentials: signingCredentials
 				,
-				claims: new List<Claim> { new(ClaimTypes.Name , user.UserName)}
+				claims: claims
 				);
-
 			// token oluşturucu sınıf
 			JwtSecurityTokenHandler tokenHandler = new();
 			token.AccessToken = tokenHandler.WriteToken(jwtSecurityToken);

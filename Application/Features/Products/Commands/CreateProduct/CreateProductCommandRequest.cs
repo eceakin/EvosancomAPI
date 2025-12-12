@@ -15,6 +15,7 @@ namespace EvosancomAPI.Application.Features.Products.Commands.CreateProduct
 		public string Code { get; set; } = string.Empty;
 		public string? Barcode { get; set; }
 		public Guid ProductCategoryId { get; set; }
+		public int StockQuantity { get; set; }
 		public string? Description { get; set; }
 		public decimal BasePrice { get; set; }
 		public bool IsCustomizable { get; set; } = true;
