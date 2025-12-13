@@ -22,6 +22,7 @@ namespace EvosancomAPI.Domain.Entities
 
 		// Navigation Properties
 		public ProductCategory ProductCategory { get; set; }
+		public ICollection<BasketItem> BasketItems { get; set; }
 		public ICollection<OrderItem> OrderItems { get; set; }
 		public ICollection<ProductionOrder> ProductionOrders { get; set; }
 	}

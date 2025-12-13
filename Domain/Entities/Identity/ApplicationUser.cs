@@ -16,5 +16,7 @@ namespace EvosancomAPI.Domain.Entities.Identity
 
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenEndTime { get; set; }
+
+        public ICollection<Basket> Baskets { get; set; }
     }
 }

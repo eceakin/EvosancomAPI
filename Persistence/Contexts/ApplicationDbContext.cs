@@ -18,6 +18,8 @@ namespace EvosancomAPI.Persistence.Contexts
 		{
 		}
 
+		public DbSet<BasketItem> BasketItems { get; set; }
+		public DbSet<Basket> Baskets { get; set; }
 		public DbSet<Dealer> Dealers { get; set; }
 		public DbSet<DealerSalesReport> SalesReports { get; set; }
 		public DbSet<WarehouseEntry> WarehouseEntries { get; set; }
@@ -49,7 +51,6 @@ namespace EvosancomAPI.Persistence.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			base.OnModelCreating(modelBuilder);
 
 			modelBuilder.Entity<Product>().Property(p => p.BasePrice).HasPrecision(18, 2);
 			modelBuilder.Entity<OrderItem>().Property(oi => oi.UnitPrice).HasPrecision(18, 2);
@@ -60,8 +61,17 @@ namespace EvosancomAPI.Persistence.Contexts
 				.WithOne() // ApplicationUser tarafında navigation property yok
 				.HasForeignKey<Dealer>(d => d.UserId)
 				;
+			modelBuilder.Entity<Order>()
+				.HasKey(d => d.Id);
 
-		
+
+			modelBuilder.Entity<Basket>()
+				.HasOne(b => b.Order)
+				.WithOne(o => o.Basket)
+				.HasForeignKey<Order>(b => b.Id);
+			base.OnModelCreating(modelBuilder);
+
+
 			// Diğer ilişkiler EF Core'un "Convention" (Standart İsimlendirme) özelliği
 			// sayesinde otomatik algılanır (CategoryId -> Category vb.) o yüzden hepsini yazmaya gerek yok.
 

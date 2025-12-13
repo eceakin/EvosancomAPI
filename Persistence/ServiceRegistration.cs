@@ -22,6 +22,10 @@ using EvosancomAPI.Application.Repositories.PriceCalculation;
 using EvosancomAPI.Persistence.Repositories.DealerNotification;
 using EvosancomAPI.Application.Repositories.DealerNotification;
 using EvosancomAPI.Persistence.Repositories.PriceCalculation;
+using EvosancomAPI.Application.Repositories.BasketItems;
+using EvosancomAPI.Persistence.Repositories.BasketItem;
+using EvosancomAPI.Application.Repositories.Basket;
+using EvosancomAPI.Persistence.Repositories.Basket;
 
 
 
@@ -82,6 +86,17 @@ namespace EvosancomAPI.Persistence
 			services.AddScoped<IPriceCalculationHistoryWriteRepository, PriceCalculationHistoryWriteRepository>();
 
 			services.AddScoped<IAuthorizationEndpointService , AuthorizationEndpointService>();
+
+
+			services.AddScoped<IBasketItemReadRepository, BasketItemReadRepository>();
+			services.AddScoped<IBasketItemWriteRepository, BasketItemWriteRepository>();
+
+			services.AddScoped<IBasketReadRepository, BasketReadRepository>();
+			services.AddScoped<IBasketWriteRepository, BasketWriteRepository>();
+
+			services.AddScoped<IBasketService, BasketService>();
+			services.AddScoped<IOrderService, OrderService>();
+
 
 			return services;
 		}
