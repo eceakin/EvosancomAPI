@@ -26,6 +26,13 @@ namespace EvosancomAPI.Persistence.Services
 		readonly IBasketWriteRepository _basketWriteRepository;
 		readonly IBasketItemWriteRepository _basketItemWriteRepository;
 		readonly IBasketItemReadRepository _basketItemReadRepository;
+
+		public Basket GetUserActiveBasket{
+			get{
+				Basket? basket =  ContextUser().Result;
+				return basket;
+			}}
+
 		public BasketService(IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager, IOrderReadRepository orderReadRepository, IBasketWriteRepository basketWriteRepository, IBasketItemWriteRepository basketItemWriteRepository, IBasketItemReadRepository basketItemReadRepository, IBasketReadRepository basketReadRepository)
 		{
 			_httpContextAccessor = httpContextAccessor;
@@ -141,5 +148,7 @@ namespace EvosancomAPI.Persistence.Services
 				await _basketItemWriteRepository.SaveAsync();
 			}
 		}
+
+		
 	}
 }

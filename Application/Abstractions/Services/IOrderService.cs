@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EvosancomAPI.Application.DTOs.Order;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace EvosancomAPI.Application.Abstractions.Services
 {
 	public interface IOrderService
 	{
-		Task CreateOrder();
+		Task CreateOrderAsync(CreateOrderDto createOrderDto);
 	}
 }

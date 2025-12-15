@@ -11,9 +11,10 @@ namespace EvosancomAPI.Application.Abstractions.Services
 	public interface IBasketService
 	{
 		public Task<List<BasketItem>> GetBasketItemsAsync();
-		public Task AddItemToBasketAsync(CreateBasketItemDto basketItem	);
+		public Task AddItemToBasketAsync(CreateBasketItemDto basketItem);
 		public Task UpdateQuantityAsync(UpdateBasketItemDto basketItem);
 		public Task DeleteItemAsync(string basketItemId);
-
+		public Basket? GetUserActiveBasket{ get; }
 	}
+
 }

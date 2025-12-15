@@ -6,6 +6,7 @@ namespace EvosancomAPI.Domain.Entities
 {
 	public class Order : BaseEntity
 	{
+	//	public Guid BasketId { get; set; }
 		public DateTime OrderDate { get; set; }
 		public OrderStatus Status { get; set; }
 		public decimal TotalAmount { get; set; }
@@ -17,7 +18,7 @@ namespace EvosancomAPI.Domain.Entities
 
 
 		public Basket Basket { get; set; }
-		public ICollection<Product> Products { get; set; }
+		//public ICollection<Product> Products { get; set; }
 		// Navigation Properties
 		//	public ICollection<OrderItem> OrderItems { get; set; }
 	}
