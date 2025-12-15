@@ -14,6 +14,6 @@ namespace EvosancomAPI.Domain.Entities
 		// Navigation Properties
 		public Order Order { get; set; }
 		public Product Product { get; set; }
-		public CustomDimension CustomDimension { get; set; }
+		//public CustomDimension CustomDimension { get; set; }
 	}
 }

@@ -25,6 +25,6 @@ namespace EvosancomAPI.Domain.Entities
 		public ProductCategory ProductCategory { get; set; }
 		public ICollection<BasketItem> BasketItems { get; set; }
 		public ICollection<OrderItem> OrderItems { get; set; }
-		public ICollection<ProductionOrder> ProductionOrders { get; set; }
+		//public ICollection<ProductionOrder> ProductionOrders { get; set; }
 	}
 }

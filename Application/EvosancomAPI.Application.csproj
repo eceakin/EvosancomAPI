@@ -25,11 +25,6 @@
     <Folder Include="Abstractions\Infrastructure\" />
     <Folder Include="Features\Orders\Queries\" />
     <Folder Include="Validators\Products\" />
-    <Folder Include="Repositories\ShipmentItem\" />
-    <Folder Include="Repositories\Shipment\" />
-    <Folder Include="Repositories\ServiceRequest\" />
-    <Folder Include="Repositories\ServiceLog\" />
-    <Folder Include="Repositories\ProductionLog\" />
   </ItemGroup>
 
 </Project>

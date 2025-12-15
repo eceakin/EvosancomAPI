@@ -21,41 +21,24 @@ namespace EvosancomAPI.Persistence.Contexts
 		public DbSet<BasketItem> BasketItems { get; set; }
 		public DbSet<Basket> Baskets { get; set; }
 		public DbSet<Dealer> Dealers { get; set; }
-		public DbSet<DealerSalesReport> SalesReports { get; set; }
-		public DbSet<WarehouseEntry> WarehouseEntries { get; set; }
-		public DbSet<ProductionOrder> ProductionOrders { get; set; }
-		public DbSet<OrderStatusHistory> OrderStatusHistories { get; set; }
-		public DbSet<Notification> Notifications { get; set; }
-		public DbSet<ProductionStation> ProductionStations { get; set; }
-		public DbSet<QualityControlForm> QualityControlForms { get; set; }
-
-		public DbSet<Stock> Stocks { get; set; }
-		public DbSet<StockMovement> StockMovements { get; set; }
+	
 
 		public DbSet<Product> Products { get; set; }
 		public DbSet<ProductCategory> ProductCategories { get; set; }
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<OrderItem> OrderItems { get; set; }
 
-		public DbSet<Shipment> Shipments { get; set; }
 
-		public DbSet<ServiceRequest> ServiceRequests { get; set; }
-
-		public DbSet<Expense> Expenses { get; set; }
 		public DbSet<DomainFile> Files { get; set; }
 
         public DbSet<Menu> Menus { get; set; }
 		public DbSet<Endpoint> Endpoints { get; set; }
-        public DbSet<DealerNotification> DealerNotifications { get; set; }
-        public DbSet<PriceCalculationHistory>	 PriceCalculationHistories { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 
 			modelBuilder.Entity<Product>().Property(p => p.BasePrice).HasPrecision(18, 2);
 			modelBuilder.Entity<OrderItem>().Property(oi => oi.UnitPrice).HasPrecision(18, 2);
 			modelBuilder.Entity<Order>().Property(o => o.TotalAmount).HasPrecision(18, 2);
-			modelBuilder.Entity<Expense>().Property(e => e.Amount).HasPrecision(18, 2);
 			modelBuilder.Entity<Dealer>()
 				.HasOne(d => d.User)
 				.WithOne() // ApplicationUser tarafında navigation property yok
