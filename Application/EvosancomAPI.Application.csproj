@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Abstractions\Infrastructure\" />
-    <Folder Include="Features\Orders\Queries\" />
     <Folder Include="Validators\Products\" />
   </ItemGroup>
 

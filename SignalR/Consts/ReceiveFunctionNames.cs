@@ -9,6 +9,6 @@ namespace SignalR.Consts
 	public static class ReceiveFunctionNames
 	{
 		public const string ReceiveProductAddedMessage = "receiveProductAddedMessage";
-		public const string ReceiveOrderAddedMessage = "receiveOrderAddedMessage	";
+		public const string ReceiveOrderAddedMessage = "receiveOrderAddedMessage";
 	}
 }
