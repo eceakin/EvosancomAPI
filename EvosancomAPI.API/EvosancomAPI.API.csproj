@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>evosancomapi-6f1c2a4e-8b3d-4e7a-9c15-2d8f0b7a3e91</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

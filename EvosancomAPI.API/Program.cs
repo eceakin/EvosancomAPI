@@ -22,6 +22,19 @@ using EvosancomAPI.API.Filters;
 // 
 var builder = WebApplication.CreateBuilder(args);
 
+// Gizli bilgiler appsettings.json'da tutulmaz; user-secrets veya ortam
+// degiskenlerinden okunur. Eksikse uygulama anlasilir bir hatayla durur.
+if (string.IsNullOrWhiteSpace(builder.Configuration.GetConnectionString("DefaultConnection")))
+	throw new InvalidOperationException(
+		"ConnectionStrings:DefaultConnection is not set. Use 'dotnet user-secrets' or the " +
+		"ConnectionStrings__DefaultConnection environment variable. See README.md.");
+
+var tokenSecurityKey = builder.Configuration["Token:SecurityKey"];
+if (string.IsNullOrWhiteSpace(tokenSecurityKey) || tokenSecurityKey.Length < 32)
+	throw new InvalidOperationException(
+		"Token:SecurityKey must be set to at least 32 characters. Use 'dotnet user-secrets' or the " +
+		"Token__SecurityKey environment variable. See README.md.");
+
 // 1. CORS Servisini Ekle (SignalR ve Credentials için özel ayar)
 
 

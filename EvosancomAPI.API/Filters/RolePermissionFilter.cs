@@ -21,7 +21,7 @@ namespace EvosancomAPI.API.Filters
 		public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
 		{
 			var name = context.HttpContext.User.Identity?.Name;
-			if (!string.IsNullOrEmpty(name) && name != "deneme")
+			if (!string.IsNullOrEmpty(name))
 			{
 				var descriptor = context.ActionDescriptor as ControllerActionDescriptor;
 				if (descriptor == null)
